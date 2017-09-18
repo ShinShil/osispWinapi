@@ -12,6 +12,9 @@ private:
     HWND container = NULL;
     HWND hStatic = NULL;
 public:
+    int downX;
+    int downY;
+    BOOL moving = FALSE;
     int X() { return x; }
     int Y() { return y; }
     int Width() { return width; }
@@ -27,6 +30,12 @@ public:
         this->hStatic = hStatic;
     }
     void Draw() {
+        RECT containerRect;
+        GetWindowRect(container, &containerRect);
+        if (x < 0) x = 10;
+        if (x + width > containerRect.right - containerRect.left - 20) x = containerRect.right - containerRect.left - width - 30;
+        if (y < 0) y = 10;
+        if (y + height > containerRect.bottom - containerRect.top - 45) y = containerRect.bottom - containerRect.top - height - 55;
         MoveWindow(hStatic, x, y, width, height, TRUE);
     }
     void MoveUp() {
@@ -46,8 +55,10 @@ public:
         Draw();
     }
     void Move(int x, int y) {
+        if (moving) {
             this->x = x;
             this->y = y;
             Draw();
+        }
     }
 };

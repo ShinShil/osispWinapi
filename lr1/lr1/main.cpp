@@ -73,8 +73,21 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam) {
         hStatic = CreateWindow(TEXT("static"), TEXT(""), WS_CHILD | WS_VISIBLE, 10, 10, 100, 100, hwnd, (HMENU)100, NULL, NULL);
         staticImage = new StaticImage(hwnd, hStatic, 10, 10, 100, 100);
         break;
-    case WM_PAINT:
-        staticImage->Move(50, 50);
+    case WM_KEYDOWN:
+        switch (wparam) {
+        case VK_DOWN:
+            staticImage->MoveDown();
+            break;
+        case VK_UP:
+            staticImage->MoveUp();
+            break;
+        case VK_LEFT:
+            staticImage->MoveLeft();
+            break;
+        case VK_RIGHT:
+            staticImage->MoveRight();
+            break;
+        }
         break;
     case WM_CLOSE:
         DestroyWindow(hwnd);

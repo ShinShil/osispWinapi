@@ -11,7 +11,6 @@ private:
     HWND hStatic;
     Drawer* drawer;
 public:
-    BOOL moving = TRUE;
     StaticImage(HWND container, HWND hStatic, int x, int y, int width, int height) {
         this->hStatic = hStatic;
         this->drawer = new Drawer(container, hStatic, x, y, width, height);
@@ -32,16 +31,29 @@ public:
         drawer->MoveLeft();
     }
     void Move(int x, int y) {
-        if (moving) {
-            drawer->Move(x, y);
-        }
+        drawer->Move(x, y);
     }
 };
 
 static LRESULT CALLBACK StaticWndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam) {
     (*prevStaticWndProc)(hwnd, msg, wparam, lparam);
     Drawer* drawer = (Drawer*)GetProp(hwnd, TEXT("drawer"));
+    TCHAR buffer[256];
+    int x = 0, y = 0;
     switch (msg) {
+    case WM_LBUTTONDOWN:
+        drawer->downX = LOWORD(lparam);
+        drawer->downY = HIWORD(lparam);
+        drawer->moving = TRUE;
+        return TRUE;
+    case WM_LBUTTONUP:
+        drawer->moving = FALSE;
+        return TRUE;
+    case WM_MOUSEMOVE:
+        x = drawer->X() + (LOWORD(lparam) - drawer->downX);
+        y = drawer->Y() + (HIWORD(lparam) - drawer->downY);
+        drawer->Move(x, y);
+        return TRUE;
     case WM_PAINT:
         HDC hdc = GetDC(hwnd);
         HPEN hpenOld = static_cast<HPEN>(SelectObject(hdc, GetStockObject(DC_PEN)));
@@ -53,5 +65,6 @@ static LRESULT CALLBACK StaticWndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM
         ReleaseDC(hwnd, hdc);
         return TRUE;
     }
+
     return TRUE;
 }
