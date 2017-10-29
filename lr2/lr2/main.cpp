@@ -10,19 +10,28 @@ const char g_szMainWindowClassName[] = "myWindowClass";
 vector<string> row = {
     "Some long string with a lot of words that makes the big height",
     "Rather short string",
-    "third col"
+    "third col",
+    "I want to eat your carrot. I'm very angry, please, feed me."
 };
 
 vector<string> row2 = {
-    "Some long string with a lot of words that makes the big height and even more height that in the frist row",
+    "Some long string with a lot of words that makes the big height and even more height that in the first row",
     "Rather short string",
-    "Some long string with a lot of words that makes the big height, from 1st row"
+    "Some long string with a lot of words that makes the big height, from 1st row",
+    "Rabbit, rabbit what do you want from me?"
+};
+
+vector<string> row3 = {
+    "We not gonna take it, Hello, We are  not gonna take it. We not gona take it anymoooooooore",
+    "anymoooooooore",
+    "ohhhhhhooohhhhooh",
+    "And we can start the tune it and al that time we lose it and al these days al was okay. Tuududud."
 };
 
 vector<vector<string>> table = {
-    row,
-    row,
-    row2
+    row2,
+    row2,
+    row
 };
 
 TableDrawer* tableDrawer;
@@ -54,9 +63,9 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR cmdLine, int nCmd
     hwnd = CreateWindowEx(
         WS_EX_CLIENTEDGE,
         g_szMainWindowClassName,
-        "Move the image",
+        "Table with text",
         WS_OVERLAPPEDWINDOW,
-        CW_USEDEFAULT, CW_USEDEFAULT, 600, 600,
+        CW_USEDEFAULT, CW_USEDEFAULT, 600, 711,
         NULL, NULL, hInst, NULL);
 
     if (hwnd == NULL)

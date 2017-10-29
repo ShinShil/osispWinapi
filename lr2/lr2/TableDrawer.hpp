@@ -61,8 +61,13 @@ private:
                 if (rowHeight < rect.bottom - rect.top) {
                     rowHeight = rect.bottom - rect.top;
                 }
+                rect.left = 0;
+                rect.right = colWidth;
+                rect.bottom = 0;
+                rect.top = 0;
             }
             rowsHeight.push_back(rowHeight + 4);
+            rowHeight = 0;
         }
         ReleaseDC(container, hdc);
     }

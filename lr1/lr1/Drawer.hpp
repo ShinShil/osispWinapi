@@ -58,7 +58,6 @@ public:
             oldDirection = moveDirection;
         }
         MoveWindow(hStatic, x, y, width, height, TRUE);
-
     }
     void MoveUp() {
         moveDirection = UP;
