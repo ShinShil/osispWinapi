@@ -18,14 +18,14 @@ vector<string> row2 = {
     "Some long string with a lot of words that makes the big height and even more height that in the first row",
     "Rather short string",
     "Some long string with a lot of words that makes the big height, from 1st row",
-    "Rabbit, rabbit what do you want from me?"
+    "Rabbit, rabbit, lorem isum dolor?"
 };
 
 vector<string> row3 = {
-    "We not gonna take it, Hello, We are  not gonna take it. We not gona take it anymoooooooore",
-    "anymoooooooore",
-    "ohhhhhhooohhhhooh",
-    "And we can start the tune it and al that time we lose it and al these days al was okay. Tuududud."
+    "Some long string with a lot of words that makes the big height and even more height that in the first row",
+    "Rather short string",
+    "Some long string with a lot of words that makes the big height, from 1st row",
+    "Rabbit, rabbit, lorem isum dolor?"
 };
 
 vector<vector<string>> table = {

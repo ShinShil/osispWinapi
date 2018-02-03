@@ -27,8 +27,8 @@ CMem::CMem(HWND hWnd) {
 
 int CMem::write(DWORD addr, char* val) {
     int res;
-    int writtenBytes = 0;
-    int length = strlen(val);
+    SIZE_T writtenBytes = 0;
+    SIZE_T length = strlen(val);
     hWin = OpenProcess(PROCESS_ALL_ACCESS, false, procId);
     res = WriteProcessMemory(hWin, (void*)addr, (void*)val, length, &writtenBytes);
     return res;
